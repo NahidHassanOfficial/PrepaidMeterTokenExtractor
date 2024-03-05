@@ -35,19 +35,44 @@ function updateTokenDisplay() {
     tokenDiv.textContent = "That's all";
   }
 }
+//Toast alert message
+let notifications = document.querySelector(".notifications");
+function createToast(type, icon, title, text) {
+  let newToast = document.createElement("div");
+  newToast.innerHTML = `
+            <div class="toast ${type}">
+                <i class="${icon}"></i>
+                <div class="content">
+                    <div class="title">${title}</div>
+                    <span>${text}</span>
+                </div>
+                <i class="fa-solid fa-xmark" onclick="(this.parentElement).remove()"></i>
+            </div>`;
+  notifications.appendChild(newToast);
+  newToast.timeOut = setTimeout(() => newToast.remove(), 5000);
+}
+
+function toastMsg() {
+  let type = "warning";
+  let icon = "fa-solid fa-triangle-exclamation";
+  let title = "Warning";
+  let text = "Enter valid message!";
+  createToast(type, icon, title, text);
+}
 
 function extractMsg() {
   let textarea = document.querySelector("textarea");
   let tokenMsg = textarea.value;
 
   if (tokenMsg == "") {
+    toastMsg();
     return [];
   } else {
     tokens = extractTokens(tokenMsg);
     currentTokenIndex = 0;
 
     if (tokens.length < 1) {
-      alert("Enter Valid Message");
+      toastMsg();
       return [];
     }
 
