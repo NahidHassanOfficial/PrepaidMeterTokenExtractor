@@ -82,9 +82,9 @@ button {
 
 .forward_buttons {
   margin-top: 10px;
-  width: 85%;
+  width: 80%;
   display: none;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -97,9 +97,23 @@ button {
 
 @media screen and (max-width: 600px) {
   section {
-    width: 300px;
+    width: 80%;
+    padding: 30px 20px;
+  }
+  p {
+    font-size: 17px;
+  }
+  textarea {
+    width: 100%;
   }
   .token {
+    width: 100%;
     font-size: 18px;
+  }
+  .forward_buttons {
+    width: 100%;
+  }
+  .submit {
+    width: 100%;
   }
 }
