@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .arrow-previous::before {
+            content: "❮";
+            margin-right: 5px;
+        }
+
+        .arrow-next::after {
+            content: "❯";
+            margin-left: 5px;
+        }
+    </style>
+    <title>Prepaid Meter Token Extractor</title>
+</head>
+
+<body>
+    <section>
+        <div>
+            <p>Prepaid Meter Token Extractor</p>
+        </div>
+        <textarea placeholder="Enter your token message here and click to proceed..."></textarea><br>
+
+        <div class="token">0000 0000 0000 0000</div>
+        <div class="forward_buttons">
+            <button class="arrow-previous">Previous Token</button><button class="arrow-next">Next Token</button>
+        </div>
+
+        <button class="submit">PROCEED</button>
+    </section>
+    <script src="script.js"></script>
+</body>
+
+</html>
