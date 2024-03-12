@@ -1,17 +1,15 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Nunito Sans", sans-serif;
 }
 
 body {
-  background-color: #f0f2f5;
+  background-color: #ececec;
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
-  background-image: url("lightning-background.png");
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 section {
@@ -21,20 +19,16 @@ section {
   border-style: none;
   padding: 30px;
   border-radius: 10px;
-  border: 3px solid lightskyblue;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* background-image: url("https://img.freepik.com/free-vector/white-abstract-wallpaper_23-2148830027.jpg");
-  background-repeat: no-repeat;
-  background-size: cover; */
 }
 
 p {
   font-size: 20px;
   font-weight: bold;
-  color: rgb(28, 126, 166);
+  color: darkcyan;
 }
 
 textarea {
@@ -54,7 +48,8 @@ button {
   margin-top: 10px;
   border-style: none;
   border-radius: 10px;
-  background-color: white;
+  background-color: darkcyan;
+  color: white;
 }
 
 .submit {
@@ -64,7 +59,6 @@ button {
   border-style: none;
   border-radius: 10px;
   font-size: 15px;
-  color: rgb(28, 126, 166);
 }
 
 .token {
@@ -73,7 +67,6 @@ button {
   margin-top: 20px;
   padding: 12px;
   font-size: 20px;
-  background-color: white;
   box-sizing: border-box;
   border-radius: 10px;
   text-align: center;
@@ -92,7 +85,11 @@ textarea,
 .submit,
 .token,
 button {
-  border: 3px solid lightskyblue;
+  border: 1px solid darkcyan;
+}
+
+.fa-play {
+  margin-right: 10px;
 }
 
 /* styles of toast message */
@@ -181,15 +178,12 @@ button {
     width: 80%;
     padding: 30px 20px;
   }
-  p {
-    font-size: 17px;
-  }
   textarea {
     width: 100%;
   }
   .token {
     width: 100%;
-    font-size: 18px;
+    font-size: 17.5px;
   }
   .forward_buttons {
     width: 100%;
