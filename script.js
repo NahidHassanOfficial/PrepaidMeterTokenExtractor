@@ -30,7 +30,10 @@ function updateTokenDisplay() {
     let token = tokens[currentTokenIndex];
     // Removes any prefix like "Token", "Token is", "Token:", or "Token is:"
     token = token.replace(/^Token(?:\s+is)?:?/i, "").trim();
-    tokenDiv.textContent = token;
+    // Now it will add space after each four digits if space is missing
+    tokenDiv.textContent = token
+      .replace(/(\d{4})(?=\d)/g, "$1 ")
+      .split(/\s*,\s*/);
   } else {
     tokenDiv.textContent = "That's all";
   }
