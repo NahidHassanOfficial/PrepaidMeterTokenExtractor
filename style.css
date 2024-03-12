@@ -112,7 +112,7 @@ button {
 }
 
 .toast i {
-  color: var(--color);
+  color: #00ffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,8 +167,8 @@ button {
 }
 
 .toast.warning {
-  --color: #0cbde9;
-  background-image: linear-gradient(to right, #0cb2e955, #22242f 30%);
+  --color: darkcyan;
+  background-image: linear-gradient(to right, var(--color), #22242f 30%);
 }
 
 /* Toast style ends here */
