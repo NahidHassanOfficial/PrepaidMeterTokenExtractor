@@ -1,7 +1,5 @@
 let tokens = [];
 let currentTokenIndex = 0;
-let tokenDiv = document.querySelector(".token");
-let forwardButtonsDiv = document.querySelector(".forward_buttons");
 let submitButton = document.querySelector(".submit");
 
 function extractTokens(tokenMsg) {
@@ -20,11 +18,8 @@ function extractTokens(tokenMsg) {
   return tokens.filter((item) => item);
 }
 
-function updateTokenDisplay() {
-  // Hide submit button and display token and forward buttons
-  submitButton.style.display = "none";
-  tokenDiv.style.display = "block";
-  forwardButtonsDiv.style.display = "flex";
+function displayToken() {
+  let tokenDiv = document.querySelector(".token");
 
   if (currentTokenIndex < tokens.length) {
     let token = tokens[currentTokenIndex];
@@ -37,7 +32,10 @@ function updateTokenDisplay() {
   } else {
     tokenDiv.textContent = "That's all";
   }
+
+  console.log(currentTokenIndex);
 }
+
 //Toast alert message
 let notifications = document.querySelector(".notifications");
 function createToast(type, icon, title, text) {
@@ -78,22 +76,41 @@ function extractMsg() {
       toastMsg();
       return [];
     }
-
-    updateTokenDisplay();
+    submitButton.remove();
+    createResultDiv();
+    displayToken();
   }
 }
 
-let previousButton = document.querySelector(".arrow-previous");
-previousButton.addEventListener("click", function () {
-  currentTokenIndex = Math.max(0, currentTokenIndex - 1);
-  updateTokenDisplay();
-});
+function createResultDiv() {
+  const tokenHtml = `
+  <div class="token"></div>
+  <div class="forward_buttons">
+    <button class="arrow-previous">Previous Token</button>
+    <button class="arrow-next">Next Token</button>
+  </div>
+`;
 
-let nextButton = document.querySelector(".arrow-next");
-nextButton.addEventListener("click", function () {
-  currentTokenIndex = Math.min(tokens.length, currentTokenIndex + 1);
-  updateTokenDisplay();
-});
+  let resultDiv = document.querySelector(".results");
+  resultDiv.innerHTML = tokenHtml;
+  resultDiv.classList.add("animate");
+
+  forwardButtons();
+}
+
+function forwardButtons() {
+  let previousButton = document.querySelector(".arrow-previous");
+  previousButton.addEventListener("click", function () {
+    currentTokenIndex = Math.max(0, currentTokenIndex - 1);
+    displayToken();
+  });
+
+  let nextButton = document.querySelector(".arrow-next");
+  nextButton.addEventListener("click", function () {
+    currentTokenIndex = Math.min(tokens.length, currentTokenIndex + 1);
+    displayToken();
+  });
+}
 
 submitButton.addEventListener("click", function () {
   extractMsg();
