@@ -52,7 +52,7 @@ function extractTokens(tokenMsg) {
 
   //it will add space after each four digits if space is missing
   tokens.forEach((element, index) => {
-    tokens[index] = element.replace(/(\d{4})(?=\d)/g, "$1 ");
+    tokens[index] = element.replace(/(\d{4})(?=\d)/g, "$1  ");
   });
 
   //removes empty string from array
