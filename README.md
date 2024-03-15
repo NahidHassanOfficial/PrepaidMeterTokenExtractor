@@ -5,8 +5,8 @@ A simple prepaid meter token extraction program to extract tokens from text data
 ### Features
 
 - Extracts tokens based on a specified pattern.
-- Handles various token formats (Bkash and Nagads text works fine).
-- Output the extracted tokens in a user-friendly format.
+- Handles various token formats (Bkash and Nagad's text works fine).
+- Output the extracted tokens in a user-friendly format with table.
 
 ### Technology Used
 
