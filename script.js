@@ -36,37 +36,33 @@ function extractMsg() {
 }
 
 function extractTokens(tokenMsg) {
-  let match = tokenMsg.match(
-    /Token(?:\s+is)?:?\s*(?![A-Za-z]+)([\d-]+\s*,?\s*)+/gi
-  );
+  let match = tokenMsg.match(/(?:\b|\d{4}-?)((?:\d{4}-?){4})(?:\d{4}-?)\b/g);
 
   if (!match) return [];
 
-  tokens = match
-    .join("")
-    .replace(/-/g, "  ")
-    .split(/\s*,\s*/);
-
-  //Removes any prefix like "Token", "Token is", "Token:", or "Token is:"
-  tokens[0] = tokens[0].replace(/^Token(?:\s+is)?:?/i, "").trim();
+  //replace hyphens with double space
+  for (let i = 0; i < match.length; i++) {
+    match[i] = match[i].replace(/-/g, "  ");
+  }
+  tokens = match;
 
   //it will add space after each four digits if space is missing
   tokens.forEach((element, index) => {
     tokens[index] = element.replace(/(\d{4})(?=\d)/g, "$1  ");
   });
 
-  //removes empty string from array
-  return tokens.filter((item) => item);
+  return tokens;
 }
 
 function extractSequence(tokenMsg) {
-  //pattern with or without space SquNo:- 7~11 SquNo:- 7 Sequence: 0~2 SeqNo: 5 SeqNo: 5~8
+  //pattern with or without space ex: SquNo:- 7~11 SquNo:- 7 Sequence: 0~2 SeqNo: 5 SeqNo: 5~8
+  //sequence separator (= or ~)
   let match = tokenMsg.match(
-    /(?<=(?:Sq(?:u)?No|Sequence|SeqNo):\s*-?\s*)\d+(?:~(\d+))?/g
+    /(?<=(?:Sq(?:u)?No|Sequence|SeqNo):\s*-?\s*)\d+(?:(?:[~=]\d+)?)/g
   );
   try {
     match.forEach((matched) => {
-      let numbers = matched.split("~").map((num) => parseInt(num, 10));
+      let numbers = matched.split(/[~=]/).map((num) => parseInt(num, 10));
       if (numbers.length == 2) {
         [begin, end] = numbers;
       } else {
