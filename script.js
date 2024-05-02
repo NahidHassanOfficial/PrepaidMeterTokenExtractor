@@ -102,7 +102,11 @@ function tokenTable() {
     `;
   //token length difference
   let difference = 0;
-  if (sequenceEnd != -1) difference = tokens.length - sequenceEnd;
+  if (sequenceEnd != -1) {
+    if (sequenceBegin != -1) {
+      difference = tokens.length - (sequenceEnd - sequenceBegin + 1);
+    } else difference = tokens.length - 1;
+  }
 
   for (let i = 0; i < tokens.length; i++) {
     let sequenceCol = "";
