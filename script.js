@@ -1,7 +1,6 @@
 let tokens = [];
-let begin = -1,
-  end = -1,
-  sequence = -1,
+let sequenceBegin = -1,
+  sequenceEnd = -1,
   flag = 0;
 let currentTokenIndex = 0;
 let submitButton = document.querySelector(".submit");
@@ -64,9 +63,9 @@ function extractSequence(tokenMsg) {
     match.forEach((matched) => {
       let numbers = matched.split(/[~=]/).map((num) => parseInt(num, 10));
       if (numbers.length == 2) {
-        [begin, end] = numbers;
+        [sequenceBegin, sequenceEnd] = numbers;
       } else {
-        sequence = numbers[0];
+        sequenceEnd = numbers[0];
       }
     });
   } catch (error) {
@@ -101,17 +100,25 @@ function tokenTable() {
         </thead>
         <tbody>
     `;
+  //token length difference
+  let difference = 0;
+  if (sequenceEnd != -1) difference = tokens.length - sequenceEnd;
 
   for (let i = 0; i < tokens.length; i++) {
-    let thirdTableData = "";
-
-    // Check if sequence information is available
-    if (begin != -1 && end != -1) {
-      if (begin <= end) {
-        thirdTableData = begin++;
+    let sequenceCol = "";
+    // Check if token length is more than the sequence
+    if (difference) {
+      sequenceCol = 0;
+      difference--;
+    }
+    //check if sequence start and ending index is available
+    else if (sequenceBegin != -1 && sequenceEnd != -1) {
+      console.log(difference);
+      if (sequenceBegin <= sequenceEnd) {
+        sequenceCol = sequenceBegin++;
       }
-    } else if (sequence !== -1 && !flag) {
-      thirdTableData = sequence;
+    } else if (sequenceEnd !== -1 && !flag) {
+      sequenceCol = sequenceEnd;
       flag++;
     }
 
@@ -119,7 +126,7 @@ function tokenTable() {
             <tr>
                 <td>${i + 1}</td>
                 <td>${tokens[i].replace(/  /g, " - ")}</td>
-                <td>${thirdTableData}</td>
+                <td>${sequenceCol}</td>
             </tr>
         `;
   }
@@ -132,12 +139,12 @@ function tokenTable() {
 }
 
 function displayToken() {
-  let tokenDiv = document.querySelector(".token");
+  let toksequenceEndiv = document.querySelector(".token");
   if (currentTokenIndex < tokens.length) {
     let token = tokens[currentTokenIndex];
-    tokenDiv.textContent = token;
+    toksequenceEndiv.textContent = token;
   } else {
-    tokenDiv.textContent = "That's all";
+    toksequenceEndiv.textContent = "That's all";
   }
   updateNthChildValue(currentTokenIndex + 1);
 }
@@ -187,7 +194,7 @@ function createToast(type, icon, title, text) {
                 </div>
                 <i class="fa-solid fa-xmark" onclick="(this.parentElement).remove()"></i>
             </div>`;
-  notifications.appendChild(newToast);
+  notifications.appsequenceEndChild(newToast);
   newToast.timeOut = setTimeout(() => newToast.remove(), 5000);
 }
 
