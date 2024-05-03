@@ -198,7 +198,7 @@ function createToast(type, icon, title, text) {
                 </div>
                 <i class="fa-solid fa-xmark" onclick="(this.parentElement).remove()"></i>
             </div>`;
-  notifications.appsequenceEndChild(newToast);
+  notifications.appendChild(newToast);
   newToast.timeOut = setTimeout(() => newToast.remove(), 5000);
 }
 
