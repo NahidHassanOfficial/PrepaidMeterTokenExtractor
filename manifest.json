@@ -1,0 +1,24 @@
+{
+  "name": "Prepaid Meter Token Extractor",
+  "short_name": "Token Extractor",
+  "description": "Extract, view, and copy prepaid meter tokens from SMS or text messages instantly.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
