@@ -1,4 +1,4 @@
-const CACHE_NAME = 'token-extractor-v1';
+const CACHE_NAME = 'token-extractor-v3';
 const ASSETS = [
   './',
   './index.html',
@@ -7,7 +7,8 @@ const ASSETS = [
   './manifest.json',
   './icon.svg',
   './icon-maskable.svg',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+  './tailwind.js',
+  './alpine.js',
   'https://fonts.googleapis.com/css?family=Poppins'
 ];
 
@@ -33,6 +34,12 @@ self.addEventListener('activate', (e) => {
       );
     }).then(() => self.clients.claim())
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 // Fetch Event - network first, fallback to cache, or cache first for fonts/css

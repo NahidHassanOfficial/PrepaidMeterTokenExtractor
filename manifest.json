@@ -4,8 +4,8 @@
   "description": "Extract, view, and copy prepaid meter tokens from SMS or text messages instantly.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#090d16",
-  "theme_color": "#0ea5e9",
+  "background_color": "#0f172a",
+  "theme_color": "#008b8b",
   "orientation": "portrait",
   "icons": [
     {
